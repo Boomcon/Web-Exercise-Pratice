@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>購物車系統</title>
+    <link rel="stylesheet" href="style/webstyle.css">
+</head>
+<body>
+    <div class="wrap">
+        <header class="menu">
+            <div class="headertitle">
+                <h1>會員管理系統</h1>
+            </div>
+            <ul>
+                <li><a href="add.html">新增</a></li>
+                <li><a href="modify.html">修改</a></li>
+                <li><a href="inquiry.html">查詢</a></li>
+                <li><a href="cart.html">購物車系統</a></li>
+                <li><a href="order.html">購物車查詢</a></li>
+            </ul>
+        </header>
+        <div class="pagetitle">
+            <h2>購物車系統</h2>
+        </div>
+        <div class="memberselect">
+            <label>帳號</label>
+            <select>
+                <option value="請選擇">請選擇</option>
+            </select>
+        </div>
+        <div class="cartsheet">
+            <table>
+                <tr class="colspan_style">
+                    <td colspan="5">產品列表</td>
+                </tr>
+                <tr class="tr_style1">
+                    <td>商品名稱</td>
+                    <td>照片</td>
+                    <td>價格</td>
+                    <td>購買數量</td>
+                    <td>總價</td>
+                </tr>
+                <tr class="tr_style2">
+                    <td>商品A</td>
+                    <td><img src="/image/keyboard-icon.png" class="product_picture" alt="商品"></td>
+                    <td>100</td>
+                    <td><input type="number" placeholder="數量不得為0"></td>
+                    <td>200</td>
+                </tr>
+                <tr class="tr_style2">
+                    <td>商品B</td>
+                    <td><img src="/image/keyboard-icon.png" class="product_picture" alt="商品"></td>
+                    <td>125</td>
+                    <td><input type="number" placeholder="數量不得為0"></td>
+                    <td>250</td>
+                </tr>
+                <tr class="tr_style2">
+                    <td>商品C</td>
+                    <td><img src="/image/keyboard-icon.png" class="product_picture" alt="商品"></td>
+                    <td>125</td>
+                    <td><input type="number" placeholder="數量不得為0"></td>
+                    <td>250</td>
+                </tr>
+                <tr class="colspan_style">
+                    <td colspan="5">總金額</td>
+                </tr>
+            </table>
+            <div class="sent">
+                <input type="button" value="送出">
+            </div>
+        </div>
+    </div>
+    <script src="/script/jquery-3.7.1.min.js"></script>
+    <script src="/script/all.js"></script>
+</body>
+</html>

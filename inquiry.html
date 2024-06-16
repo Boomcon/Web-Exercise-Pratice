@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>會員查詢</title>
+    <link rel="stylesheet" href="style/webstyle.css">
+</head>
+<body>
+    <div class="wrap">
+        <header class="menu">
+            <div class="headertitle">
+                <h1>會員管理系統</h1>
+            </div>
+            <ul>
+                <li><a href="add.html">新增</a></li>
+                <li><a href="modify.html">修改</a></li>
+                <li><a href="inquiry.html">查詢</a></li>
+                <li><a href="cart.html">購物車系統</a></li>
+                <li><a href="order.html">購物車查詢</a></li>
+            </ul>
+        </header>
+        <div class="pagetitle">
+            <h2>會員查詢</h2>
+        </div>
+        <div class="research">
+            <form action="#">
+                <fieldset>
+                    <div class="form_style1">
+                        <p>紀錄日期
+                            <span>開始日</span><input type="date">
+                            <span>~結束日</span><input type="date">
+                        </p>
+                        <label id="ticket-number">流水號
+                            <input type="text" name="" id="">
+                        </label>
+                    </div>
+                    <div class="form_style1">
+                        <label  class="select_style1">國家
+                            <select>
+                                <option value="請選擇">請選擇</option>
+                            </select>
+                        </label>
+                        <label id="city">城市
+                            <select>
+                                <option value="請選擇">請選擇</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="form_style1">
+                        <label class="select_style1">專長
+                            <select>
+                                <option value="請選擇">請選擇</option>
+                            </select>
+                        </label>
+                        <div>
+                            <label id="account">帳號</label>
+                            <input type="text" name="" id="">
+                        </div>
+                    </div>
+                    <div  class="inquiry">
+                        <input type="button" value="查詢">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="membersheet">
+            <table>
+                <tr class="tr_style1">
+                    <td>刪除</td>
+                    <td>紀錄日期</td>
+                    <td>流水號</td>
+                    <td>帳號</td>
+                    <td>國家</td>
+                    <td>城市</td>
+                    <td>姓名</td>
+                    <td>性別</td>
+                    <td>修改</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkbox"></td>
+                    <td>2024/5/12</td>
+                    <td><a href="#">Mem20240512001</a></td>
+                    <td><a href="#">email@email.com</a></td>
+                    <td>Taiwan</td>
+                    <td>Taipei</td>
+                    <td>Name1</td>
+                    <td>男</td>
+                    <td><input type="button" value="修改" class="fix"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkbox"></td>
+                    <td>2024/5/12</td>
+                    <td><a href="#">Mem20240512001</a></td>
+                    <td><a href="#">email@email.com</a></td>
+                    <td>Taiwan</td>
+                    <td>Taipei</td>
+                    <td>Name2</td>
+                    <td>男</td>
+                    <td><input type="button" value="修改" class="fix"></td>
+                </tr>
+            </table>
+            <div class="delete">
+                <input type="button" value="刪除">
+            </div>
+        </div>
+    </div>
+    <script src="/script/jquery-3.7.1.min.js"></script>
+    <script src="/script/all.js"></script>
+</body>
+</html>

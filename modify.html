@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>會員新增</title>
+    <link rel="stylesheet" href="style/webstyle.css">
+</head>
+<body>
+    <div class="wrap">
+        <header class="menu">
+            <div class="headertitle">
+                <h1>會員管理系統</h1>
+            </div>
+            <ul>
+                <li><a href="add.html">新增</a></li>
+                <li><a href="modify.html">修改</a></li>
+                <li><a href="inquiry.html">查詢</a></li>
+                <li><a href="cart.html">購物車系統</a></li>
+                <li><a href="order.html">購物車查詢</a></li>
+            </ul>
+        </header>
+        <div class="pagetitle">
+            <h2>會員修改</h2>
+        </div>
+        <div class="formpage">
+            <form action="#">
+                <div>
+                    <label for="userAccount">帳號<span class="must">必填</span></label>
+                    <input type="email" id="userAccount" name="userAccount" class="text_style1" placeholder="請輸入電子郵件">
+                </div>
+                <div>
+                    <label for="userName">姓名<span class="must">必填</span></label>
+                    <input type="text" id="userName" name="userName" class="text_style1" placeholder="請輸入用戶名">
+                </div>
+                <div>
+                    <label for="userCountry">國家<span class="must">必填</span>
+                        <select id="userCountry" name="userCountry" class="text_style1">
+                            <option value="請選擇">請選擇</option>
+                        </select>
+                    </label>
+                </div>
+                <div>
+                    <label for="userCity">城市<span class="must">必填</span>
+                        <select  id="userCity" name="userCity" class="text_style1">
+                            <option value="請選擇">請選擇</option>
+                        </select>
+                    </label>
+                </div>
+                <div>
+                    <label>性別
+                        <input type="radio" id="userSexMale" name="userGender" class="text_style2" value="男" checked>男
+                        <input type="radio" id="userSexFemale" name="userGender" class="text_style2" value="女">女
+                    </label>
+                </div>
+                <div>
+                    <label for="userSkill">專長<span class="must">必填</span>
+                        <input type="text" id="userSkill" name="userSkill" class="text_style1">
+                        <input type="button" value="新增" class="text_style3">
+                        <input type="button" value="刪除" class="text_style3">
+                    </label>
+                    <ul class="list"></ul>
+                </div>
+                <div>
+                    <label>請選擇感興趣的主題</label>
+                    <br>
+                    <label for="家電/電玩"><input type="checkbox" id="家電/電玩" name="userInterest" class="text_style4" value="家電/電玩">家電/電玩</label>
+                    <label for="手機/相機"><input type="checkbox" id="手機/相機" name="userInterest" class="text_style4" value="手機/相機">手機/相機</label>
+                    <label for="電腦/組件"><input type="checkbox" id="電腦/組件" name="userInterest" class="text_style4" value="電腦/組件">電腦/組件</label>
+                    <label for="3C周邊"><input type="checkbox" id="3C周邊" name="userInterest" class="text_style4" value="3C周邊">3C周邊</label>
+                    <br>
+                    <label for="保健/醫療"><input type="checkbox" id="保健/醫療" name="userInterest" class="text_style4" value="保健/醫療">保健/醫療</label>
+                    <label for="食品/飲料"><input type="checkbox" id="食品/飲料" name="userInterest" class="text_style4" value="食品/飲料">食品/飲料</label>
+                    <label for="精品/飾品"><input type="checkbox" id="精品/飾品" name="userInterest" class="text_style4" value="精品/飾品">精品/飾品</label>
+                    <label for="戶外/車類"><input type="checkbox" id="戶外/車類" name="userInterest" class="text_style4" value="戶外/車類">戶外/車類</label>
+                </div>
+                <div class="remark">
+                    <label for="userRemark">備註</label>
+                    <br>
+                    <textarea id="userRemark"></textarea>
+                    <br>
+                    <input type="button" value="送出" id="signUpBtn" name="signUp" class="text_style3">
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/script/jquery-3.7.1.min.js"></script>
+    <script src="/script/all.js"></script>
+</body>
+</html>

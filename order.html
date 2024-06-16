@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>購物車查詢</title>
+    <link rel="stylesheet" href="style/webstyle.css">
+</head>
+<body>
+    <div class="wrap">
+        <header class="menu">
+            <div class="headertitle">
+                <h1>會員管理系統</h1>
+            </div>
+            <ul>
+                <li><a href="add.html">新增</a></li>
+                <li><a href="modify.html">修改</a></li>
+                <li><a href="inquiry.html">查詢</a></li>
+                <li><a href="cart.html">購物車系統</a></li>
+                <li><a href="order.html">購物車查詢</a></li>
+            </ul>
+        </header>
+        <div class="pagetitle">
+            <h2>購物車查詢</h2>
+        </div>
+        <div class="ordernews">
+            <p>紀錄日期
+                <span>開始日</span><input type="date">
+                <span>~結束日</span><input type="date">
+            </p>
+            <label>帳號</label>
+            <select>
+                <option value="請選擇">請選擇</option>
+            </select>
+            <div  class="inquiry2">
+                <input type="button" value="查詢">
+            </div>
+        </div>
+        <div class="ordersheet">
+            <table>
+                <tr class="tr_style1">
+                    <td>採購日期</td>
+                    <td>流水號</td>
+                    <td>帳號</td>
+                    <td>採購機種/採購數量/單價/採購金額</td>
+                    <td>總採購金額</td>
+                </tr>
+                <tr>
+                    <td>2024/5/12</td>
+                    <td>Shop20240512001</td>
+                    <td><a href="#">email@email.com</a></td>
+                    <td>商品A/2/200/400</td>
+                    <td>1500</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    </div>
+    <script src="/script/jquery-3.7.1.min.js"></script>
+    <script src="/script/all.js"></script>
+</body>
+</html>
