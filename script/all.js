@@ -1,221 +1,210 @@
 /* 一、會員新增頁面 */
-const userAccount = document.querySelector("#userAccount");
-const userName = document.querySelector("#userName");
-const userCountry = document.querySelector("#userCountry");
-const userCity = document.querySelector("#userCity");
-const userRemark = document.querySelector("#userRemark");
-const signUpBtn = document.querySelector("#signUpBtn");
-
-//建立一個陣列資料庫用來儲存會員資料
+// 建立一個陣列資料庫用來儲存會員資料
 let data = [
-    {
-        Account: "mmorpg176@gmail.com",
-        Name: "李文志",
-        Country: "台灣",
-        City: "台北",
-        Gender: "男",
-        Skill: ["寫程式", "睡覺"],
-        Interest: ["電腦/組件", "手機/相機"],
-        Remark: "寫程式好難"
-    }
+  {
+      Account: "mmorpg176@gmail.com",
+      Name: "李文志",
+      Country: "台灣",
+      City: "台北",
+      Gender: "男",
+      Skill: ["寫程式", "睡覺"],
+      Interest: ["電腦/組件", "手機/相機"],
+      Remark: "寫程式好難"
+  }
 ];
 
-//將陣列資料庫儲存到瀏覽器localStorage
+// 將陣列資料庫儲存到瀏覽器 localStorage
 function storageData() {
   let userData = JSON.stringify(data);
   localStorage.setItem("userData", userData);
-};
+}
 
-//驗證表單格式
+// 驗證表單格式
 function validateForm() {
-    const email = document.getElementById("userAccount").value;
-    const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const name = document.getElementById("userName").value;
-    const selectCountry = document.getElementById("userCountry").value;
-    const skill = skillData;
+  const email = document.getElementById("userAccount").value;
+  const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const name = document.getElementById("userName").value;
+  const selectCountry = document.getElementById("userCountry").value;
+  const skill = skillData;
 
-    if (!re.test(email)) {
-        alert("無效的Email格式");
-        console.log("無效的Email格式");
-        return false;
-    }
-    else if (name === "") {
-        alert("請輸入姓名");
-        console.log("請輸入姓名");
-        return false;
-    }
-    else if (selectCountry === "請選擇") {
-        alert("請選擇國家");
-        console.log("請選國家");
-        return false;
-    }
-    else if (skill.length === 0) {
-        alert("請輸入專長");
-        console.log("請輸入專長");
-        return false;
-    }
-    return true;
-};
-
-//重置表單
-function restForm() {
-  document.getElementById("dataForm").reset();
-
-  var options = document.querySelectorAll('#userCity option');
-  for (var i = 0, l = options.length; i < l; i++) {
-    options[i].selected = options[i].defaultSelected;
+  if (!re.test(email)) {
+      alert("無效的Email格式");
+      console.log("無效的Email格式");
+      return false;
   }
-  list.innerHTML = "";
-  skillData = [];
-};
+  else if (name === "") {
+      alert("請輸入姓名");
+      console.log("請輸入姓名");
+      return false;
+  }
+  else if (selectCountry === "請選擇") {
+      alert("請選擇國家");
+      console.log("請選國家");
+      return false;
+  }
+  else if (skill.length === 0) {
+      alert("請輸入專長");
+      console.log("請輸入專長");
+      return false;
+  }
+  return true;
+}
 
-//暫存user專長input值
+// 重置表單
+function resetForm() {
+  document.getElementById("dataForm").reset(); // 使用原生 reset() 方法重置表單
+
+  // 重置下拉選單到初始狀態
+  document.getElementById("userCountry").selectedIndex = 0;
+  document.getElementById("userCity").selectedIndex = 0;
+
+  // 清空或重置其他表單元素的值
+  document.getElementById("userName").value = "";
+  document.getElementById("userAccount").value = "";
+  document.getElementById("userRemark").value = "";
+
+  // 清空或重置其他特定的操作，比如清空列表或陣列
+  list.innerHTML = ""; // 清空專長列表
+  skillData = []; // 重置專長資料陣列
+}
+
+// 暫存user專長input值
 let skillData = [];
 const list = document.querySelector("#list");
 
 function getUserSkill() {
-    let getskillValue = document.querySelector("#userSkill").value;
-    skillData.push(getskillValue);
+  let userSkillInput = document.querySelector("#userSkill");
+  let getskillValue = userSkillInput.value.trim();
 
-    let str = "";
-    let skill = skillData.length;
+  if (getskillValue === "") {
+      alert("請輸入要新增的專長");
+      return;
+  }
 
-    for (var i = 0; i < skill; i++) {
-        let content = '<li>' + skillData[i] + '</li>'
-        str += content;
-    }
-
-    list.innerHTML = str;
-};
-
-// //刪除user暫存專長input值 (還在修改中)
-function delUserSkill() {
-    let delskillValue = document.querySelector("#userSkill").value;
-    let indexDel = "查無此資料";
-    skillData.forEach(function(item, index) {
-      if (delskillValue === item) {
-        indexDel = index;
-      }
-    })
-    if (indexDel != "查無此資料") {
-      skillData.splice(indexDel, 1);
-    }
-    else {
-      console.log(indexDel);
-    }
-
+  skillData.push(getskillValue);
+  renderSkillList();
+  userSkillInput.value = "";
 }
 
+// 刪除user暫存專長input值
+function deleteUserSkill() {
+  let userSkillInput = document.querySelector("#userSkill");
+  let delskillValue = userSkillInput.value.trim();
 
-//取得興趣主題checkbox值
+  if (delskillValue === "") {
+      alert("請輸入要刪除的專長");
+      return;
+  }
+
+  let index = skillData.indexOf(delskillValue);
+  if (index !== -1) {
+      skillData.splice(index, 1);
+      renderSkillList();
+  } else {
+      console.log("找不到要刪除的專長");
+  }
+}
+
+// 渲染專長列表
+function renderSkillList() {
+  let str = "";
+  skillData.forEach(function(skill) {
+      str += `<li>${skill}</li>`;
+  });
+  list.innerHTML = str;
+}
+
+// 取得興趣主題checkbox值
 function getCheckboxValue() {
-	let array = [];
-	let checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
+  let checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
+  let values = [];
+  checkboxes.forEach(function(checkbox) {
+      values.push(checkbox.value);
+  });
+  return values;
+}
 
-	for (var i = 0; i < checkboxes.length; i++) {
-        array.push(checkboxes[i].value);
-        console.log(checkboxes[i].value);
-	}
-  return array
-};
+// 監聽新增專長按鈕
+const addSkillBtn = document.querySelector("#addSkill");
+addSkillBtn.addEventListener("click", getUserSkill);
 
-//使用ajax + jquery建立非同步互動式下拉選單 (還在修改中)
-$(document).ready(function(){
-    //選國家
-    $.ajax({
-        url: 'https://raw.githubusercontent.com/donma/TaiwanAddressCityAreaRoadChineseEnglishJSON/master/CityCountyData.json',
-        type: "get",
-		dataType: "json",
-        success: function (data) {
-			$.each(data,function(key,value){
-				$('#userCountry').append('<option value="'+ key +'">'+ data[key].CityName +'</option>')
-			})
-		},
-        error: function (data) {
-            alert("fail");
-        }
-    });
-    //選城市
-    $("#userCountry").change(function(){
-        cityvalue = $("#userCountry").val();  //取值
-		$("#userCity").empty(); //清空上次的值
-        $.ajax({
-            url: 'https://raw.githubusercontent.com/donma/TaiwanAddressCityAreaRoadChineseEnglishJSON/master/CityCountyData.json',
-            type: "get",
-            dataType: "json",
-            success:function(data){
-				eachval = data[cityvalue].AreaList; //鄉鎮
-				$.each(eachval,function(key,value){
-					$("#userCity").append('<option value="'+key+'">'+eachval[key].AreaName+'</option>')
-				});
-			},
-			error:function(){
-				alert("fail");
-			}
-        });
-    });
-});
+// 監聽刪除專長按鈕
+const delSkillBtn = document.querySelector("#delSkill");
+delSkillBtn.addEventListener("click", deleteUserSkill);
 
-//新增專長事件監聽
-const addSkill = document.querySelector("#addSkill");
-
-addSkill.addEventListener("click", function(e) {
-    if (!userSkill.value.trim()) {
-        alert("請輸入要新增的專長");
-        return;
-    }
-
-    getUserSkill();
-
-    userSkill.value = "";
-});
-
-//刪除專長事件監聽
-const delSkill = document.querySelector("#delSkill");
-
-delSkill.addEventListener("click", function(e) {
-    if (!userSkill.value.trim()) {
-        alert("請輸入要刪除的專長");
-        return;
-    }
-
-    let delskillValue = document.querySelector("#userSkill").value;
-    let indexDel = "查無此資料";
-    skillData.forEach(function(item, index) {
-      if (delskillValue === item) {
-        indexDel = index;
-      }
-    })
-    if (indexDel != "查無此資料") {
-      skillData.splice(indexDel, 1);
-    }
-    else {
-      console.log(indexDel);
-    }
-
-});
-
-
-//點擊送出表單事件監聽
+// 點擊送出表單事件監聽
 signUpBtn.addEventListener("click", function(e) {
-    let validate = validateForm();
-    if (validate === true) {
-      let obj = {};
-      const userGender = document.querySelector('input[name="userGender"]:checked');
-      let checkbox = getCheckboxValue();
-      obj.Account = userAccount.value.trim();
-      obj.Name = userName.value.trim();
-      obj.Country = userCountry.value;
-      obj.City = userCity.value;
-      obj.Gender = userGender.value;
-      obj.Skill = skillData;
-      obj.Interest = checkbox;
-      obj.Remark = userRemark.value.trim();
-      data.push(obj);
+  e.preventDefault();
+  let isValid = validateForm();
+  if (isValid) {
+      // 提交表單成功的處理
+      let userGender = document.querySelector('input[name="userGender"]:checked');
+      let checkboxValues = getCheckboxValue();
+      
+      // 取得選擇的國家和城市文字內容
+      let selectedCountry = $("#userCountry option:selected").text();
+      let selectedCity = $("#userCity option:selected").text();
+      
+      let userData = {
+          Account: userAccount.value.trim(),
+          Name: userName.value.trim(),
+          Country: selectedCountry,
+          City: selectedCity,
+          Gender: userGender ? userGender.value : "",
+          Skill: skillData,
+          Interest: checkboxValues,
+          Remark: userRemark.value.trim()
+      };
+      data.push(userData);
       storageData();
-      restForm();
-    };
+      resetForm(); // 重置表單
+      console.log("表單提交成功:", userData);
+
+      // 重置城市選單到初始狀態
+      $('#userCity').val('請選擇');
+  } else {
+      console.log("表單驗證未通過");
+  }
 });
+
+// 使用ajax + jquery建立非同步互動式下拉選單
+$(document).ready(function() {
+  // 選國家
+  $.ajax({
+      url: 'https://raw.githubusercontent.com/donma/TaiwanAddressCityAreaRoadChineseEnglishJSON/master/CityCountyData.json',
+      type: "get",
+      dataType: "json",
+      success: function(data) {
+          $.each(data, function(key, value) {
+              $('#userCountry').append(`<option value="${key}">${value.CityName}</option>`);
+          });
+      },
+      error: function() {
+          alert("無法獲取資料");
+      }
+  });
+
+  // 選城市
+  $("#userCountry").change(function() {
+      let cityvalue = $(this).val();
+      $("#userCity").empty();
+      $.ajax({
+          url: 'https://raw.githubusercontent.com/donma/TaiwanAddressCityAreaRoadChineseEnglishJSON/master/CityCountyData.json',
+          type: "get",
+          dataType: "json",
+          success: function(data) {
+              let eachval = data[cityvalue].AreaList;
+              $.each(eachval, function(key, value) {
+                  $("#userCity").append(`<option value="${key}">${value.AreaName}</option>`);
+              });
+          },
+          error: function() {
+              alert("無法獲取城市資料");
+          }
+      });
+  });
+});
+
 
 
 
