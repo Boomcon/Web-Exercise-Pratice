@@ -1,6 +1,6 @@
 /* 一、會員新增頁面 */
 // 建立一個陣列資料庫用來儲存會員資料
-let data = [
+const data = [
   {
       Account: "mmorpg176@gmail.com",
       Name: "李文志",
@@ -21,9 +21,9 @@ function storageData() {
 
 // 驗證表單格式
 function validateForm() {
-  const email = document.getElementById("userAccount").value;
+  const email = document.getElementById("userAccount").value.trim();
   const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  const name = document.getElementById("userName").value;
+  const name = document.getElementById("userName").value.trim();
   const selectCountry = document.getElementById("userCountry").value;
   const skill = skillData;
 
@@ -39,7 +39,7 @@ function validateForm() {
   }
   else if (selectCountry === "請選擇") {
       alert("請選擇國家");
-      console.log("請選國家");
+      console.log("請選擇國家");
       return false;
   }
   else if (skill.length === 0) {
@@ -103,6 +103,7 @@ function deleteUserSkill() {
   } else {
       console.log("找不到要刪除的專長");
   }
+  userSkillInput.value = "";
 }
 
 // 渲染專長列表
@@ -204,20 +205,3 @@ $(document).ready(function() {
       });
   });
 });
-
-
-
-
-/* 二、會員修改頁面 */
-
-
-
-/* 三、會員查詢頁面 */
-
-
-
-/* 四、購物車系統頁面 */
-
-
-
-/* 五、購物車查詢   頁面 */

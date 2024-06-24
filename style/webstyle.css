@@ -197,8 +197,18 @@ textarea {
     height: 100px;
 }
 
+#loadBtn {
+    margin-bottom: 0%;
+}
+
 #signUpBtn {
     margin-left:0%;
+    margin-top: 10px;
+}
+
+#updateBtn {
+    margin-left:0%;
+    margin-right: 10px;
     margin-top: 10px;
 }
 
