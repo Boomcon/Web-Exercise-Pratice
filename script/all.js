@@ -145,6 +145,13 @@ signUpBtn.addEventListener("click", function(e) {
       // 取得選擇的國家和城市文字內容
       let selectedCountry = $("#userCountry option:selected").text();
       let selectedCity = $("#userCity option:selected").text();
+
+      // 獲取當前日期
+      let currentDate = new Date();
+      let formattedDate = currentDate.toISOString().split('T')[0];
+
+      // 生成流水號
+      let serialNumber = (data.length + 1).toString().padStart(8, '0');
       
       let userData = {
           Account: userAccount.value.trim(),
@@ -154,15 +161,17 @@ signUpBtn.addEventListener("click", function(e) {
           Gender: userGender ? userGender.value : "",
           Skill: skillData,
           Interest: checkboxValues,
-          Remark: userRemark.value.trim()
+          Remark: userRemark.value.trim(),
+          RegisterDate: formattedDate,
+          SerialNumber: serialNumber
       };
       data.push(userData);
       storageData();
       resetForm(); // 重置表單
+      alert("您的帳號流水號為:" + serialNumber);
       console.log("表單提交成功:", userData);
 
-      // 重置城市選單到初始狀態
-      $('#userCity').val('請選擇');
+      selectedCity = `<option value="請選擇">請選擇</option>`;
   } else {
       console.log("表單驗證未通過");
   }

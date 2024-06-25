@@ -3,30 +3,30 @@ const userAccount = document.querySelector("#userAccount");
 const modifyName = document.querySelector("#modifyName");
 const modifyCountry = document.querySelector("#modifyCountry");
 const modifyCity = document.querySelector("#modifyCity");
-const modifyGender = document.querySelector("#modifyGender");
-const modifySkill = document.querySelector("#modifySkill");
 const modifyRemark = document.querySelector("#modifyRemark");
 const modifyAddSkill = document.querySelector("#modifyAddSkill");
 const modifyDelSkill = document.querySelector("#modifyDelSkill");
 const loadUserData = document.querySelector("#loadUserData");
 const updateBtn = document.querySelector("#updateBtn");
+const modifyDate = document.querySelector("#modifyDate");
+const modifySerialNumber = document.querySelector("#modifySerialNumber");
+const list = document.querySelector("#list");
 
-const data = [];
+//暫存user專長
+let skillData = [];
 
 //從localStorage中取值，需要做json解析
 let userData = JSON.parse(localStorage.getItem("userData"))  || []; //當"userData"為 false、null、undefined、0、NaN 或空字符串時，使用空陣列[]作為默認值
 
 // 將陣列資料庫儲存到瀏覽器 localStorage
 function storageData() {
-    let userData = JSON.stringify(data);
-    localStorage.setItem("userData", userData);
+    localStorage.setItem("userData", JSON.stringify(userData));
 }
 
 // 驗證表單格式
 function validateForm() {
-    const name = document.getElementById("modifyName").value.trim();
-    const selectCountry = document.getElementById("modifyCountry").value;
-    const skill = skillData;
+    const name = modifyName.value.trim();
+    const selectCountry = modifyCountry.value;
   
     if (name === "") {
         alert("請輸入姓名");
@@ -38,7 +38,7 @@ function validateForm() {
         console.log("請選擇國家");
         return false;
     }
-    else if (skill.length === 0) {
+    else if (skillData.length === 0) {
         alert("請輸入專長");
         console.log("請輸入專長");
         return false;
@@ -51,23 +51,19 @@ function resetForm() {
     document.getElementById("modifyForm").reset(); // 使用原生 reset() 方法重置表單
   
     // 重置下拉選單到初始狀態
-    document.getElementById("modifyCountry").selectedIndex = 0;
-    document.getElementById("modifyCity").selectedIndex = 0;
+    modifyCountry.selectedIndex = 0;
+    modifyCity.selectedIndex = 0;
   
     // 清空或重置其他表單元素的值
-    document.getElementById("modifyName").value = "";
-    document.getElementById("userAccount").value = "";
-    document.getElementById("modifyRemark").value = "";
+    modifyName.value = "";
+    userAccount.value = "";
+    modifyRemark.value = "";
   
     // 清空或重置其他特定的操作，比如清空列表或陣列
     list.innerHTML = ""; // 清空專長列表
     skillData = []; // 重置專長資料陣列
     userAccount.disabled = false;
 }
-
-//暫存user專長
-let skillData = [];
-const list = document.querySelector("#list");
 
 function getUserSkill() {
     let userSkillInput = document.querySelector("#modifySkill");
@@ -143,6 +139,8 @@ loadUserData.addEventListener("click", function() {
         });
 
         modifyRemark.value = user.Remark;
+        modifyDate.value = user.RegisterDate; // 顯示註冊日期
+        modifySerialNumber.value = user.SerialNumber; // 顯示流水號
     }
     else {
         alert("查無此帳號資料");
@@ -151,43 +149,47 @@ loadUserData.addEventListener("click", function() {
 });
 
 //新增專長事件監聽
-const addSkillBtn = document.querySelector("#modifyAddSkill");
 modifyAddSkill.addEventListener("click", getUserSkill);
 
 //刪除專長事件監聽
-const delSkillBtn = document.querySelector("#modifyDelSkill");
 modifyDelSkill.addEventListener("click", deleteUserSkill);
 
 //修改資料事件監聽
 updateBtn.addEventListener("click", function(e) {
     e.preventDefault();
-    let isValid = validateForm();
-    if (isValid) {
+    if (validateForm()) {
         // 提交表單成功的處理
-        let modifyGender = document.querySelector('input[name="modifyGender"]:checked');
+        let modifyGender = document.querySelector('input[name="modifyGender"]:checked').value;
         let checkboxValues = getCheckboxValue();
         
         // 取得選擇的國家和城市文字內容
-        let modifyCountry = $("#modifyCountry option:selected").text();
-        let modifyCity = $("#modifyCity option:selected").text();
+        let selectedCountry = $("#modifyCountry option:selected").text();
+        let selectedCity = $("#modifyCity option:selected").text();
         
-        let userData = {
+        let user = {
             Account: userAccount.value.trim(),
             Name: modifyName.value.trim(),
-            Country: modifyCountry,
-            City: modifyCity,
-            Gender: modifyGender ? modifyGender.value : "",
+            Country: selectedCountry,
+            City: selectedCity,
+            Gender: modifyGender,
             Skill: skillData,
             Interest: checkboxValues,
-            Remark: modifyRemark.value.trim()
+            Remark: modifyRemark.value.trim(),
+            // 保留註冊日期和流水號
+            RegisterDate: modifyDate.value,
+            SerialNumber: modifySerialNumber.value
         };
-        data.push(userData);
+
+        let userIndex = userData.findIndex(u => u.Account === user.Account);
+        if (userIndex !== -1) {
+            userData[userIndex] = user;
+        } 
+        else {
+            userData.push(user);
+        }
         storageData();
-        resetForm(); // 重置表單
-        console.log("表單提交成功:", userData);
-  
-        // 重置城市選單到初始狀態
-        $('#modifyCity').val('請選擇');
+        resetForm();
+        console.log("表單提交成功:", user);
     } else {
         console.log("表單驗證未通過");
     }
@@ -195,7 +197,6 @@ updateBtn.addEventListener("click", function(e) {
 
 // 加載城市選單
 $(document).ready(function() {
-    // 選國家
     $.ajax({
         url: 'https://raw.githubusercontent.com/donma/TaiwanAddressCityAreaRoadChineseEnglishJSON/master/CityCountyData.json',
         type: "get",
@@ -210,7 +211,6 @@ $(document).ready(function() {
         }
     });
   
-    // 選城市
     $("#modifyCountry").change(function() {
         let cityvalue = $(this).val();
         $("#modifyCity").empty();
@@ -229,4 +229,4 @@ $(document).ready(function() {
             }
         });
     });
-  });
+});
