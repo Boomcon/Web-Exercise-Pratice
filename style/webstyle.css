@@ -233,30 +233,26 @@ textarea {
     margin-bottom: 10px;
 }
 
-.form_style1 span {
-    margin-left: 15px;
-}
-
 .select_style1 select {
     margin-left: 50px;
     width: 80px;
 }
 
-#ticket-number input {
+#number input {
     margin-left: 30px;
 }
 
-#city {
+.city {
     margin-right: 97px;
 }
 
-#city select {
-    margin-left: 48px;
+.city select {
+    margin-left: 65px;
     width: 80px;
 }
 
-#account {
-    margin-right: 48px;
+#registeredAccount input {
+    margin-left: 15px;
 }
 
 

@@ -27,36 +27,30 @@
             <form action="#">
                 <fieldset>
                     <div class="form_style1">
-                        <p>紀錄日期
-                            <span>開始日</span><input type="date">
-                            <span>~結束日</span><input type="date">
-                        </p>
-                        <label id="ticket-number">流水號
-                            <input type="text" name="" id="">
+                        <label for="registeredDate">註冊日期
+                            <span>開始日</span><input type="date" id="startDate" name="registeredDate">
+                            <span>~結束日</span><input type="date" id="endDate" name="registeredDate">
                         </label>
                     </div>
                     <div class="form_style1">
-                        <label  class="select_style1">國家
-                            <select>
-                                <option value="請選擇">請選擇</option>
-                            </select>
+                        <label for="" id="registeredAccount">註冊帳號
+                            <input type="text" name="" id="">
                         </label>
-                        <label id="city">城市
-                            <select>
-                                <option value="請選擇">請選擇</option>
-                            </select>
+                        <label for="serialNumber" id="number">會員編號
+                            <input type="text" id="serialNumber" name="serialNumber">
                         </label>
                     </div>
                     <div class="form_style1">
-                        <label class="select_style1">專長
-                            <select>
+                        <label for="userCountry" class="select_style1">國家
+                            <select id="userCountry" name="userCountry">
                                 <option value="請選擇">請選擇</option>
                             </select>
                         </label>
-                        <div>
-                            <label id="account">帳號</label>
-                            <input type="text" name="" id="">
-                        </div>
+                        <label for="userCity" class="city">城市
+                            <select id="userCity" name="userCity">
+                                <option value="請選擇">請選擇</option>
+                            </select>
+                        </label>
                     </div>
                     <div  class="inquiry">
                         <input type="button" value="查詢">
@@ -80,24 +74,24 @@
                 <tr>
                     <td><input type="checkbox" class="checkbox"></td>
                     <td>2024/5/12</td>
-                    <td><a href="#">Mem20240512001</a></td>
-                    <td><a href="#">email@email.com</a></td>
+                    <td>Mem20240512001</td>
+                    <td>email@email.com</td>
                     <td>Taiwan</td>
                     <td>Taipei</td>
                     <td>Name1</td>
                     <td>男</td>
-                    <td><input type="button" value="修改" class="fix"></td>
+                    <td><a href="modify.html"><input type="button" value="修改" class="fix"></a></td>
                 </tr>
                 <tr>
                     <td><input type="checkbox" class="checkbox"></td>
                     <td>2024/5/12</td>
-                    <td><a href="#">Mem20240512001</a></td>
-                    <td><a href="#">email@email.com</a></td>
+                    <td>Mem20240512001</td>
+                    <td>email@email.com</td>
                     <td>Taiwan</td>
                     <td>Taipei</td>
                     <td>Name2</td>
                     <td>男</td>
-                    <td><input type="button" value="修改" class="fix"></td>
+                    <td><a href="modify.html"><input type="button" value="修改" class="fix"></a></td>
                 </tr>
             </table>
             <div class="delete">
@@ -106,6 +100,6 @@
         </div>
     </div>
     <script src="/script/jquery-3.7.1.min.js"></script>
-    <script src="/script/all.js"></script>
+    <script src="/script/inquiry.js"></script>
 </body>
 </html>
