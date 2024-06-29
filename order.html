@@ -25,38 +25,33 @@
         </div>
         <div class="ordernews">
             <p>紀錄日期
-                <span>開始日</span><input type="date">
-                <span>~結束日</span><input type="date">
+                <span>開始日</span><input type="date" id="startDate">
+                <span>~結束日</span><input type="date" id="endDate">
             </p>
             <label>帳號</label>
-            <select>
+            <select id="memberSelect">
                 <option value="請選擇">請選擇</option>
+                <!-- 帳號選項將會在 JavaScript 中動態加入 -->
             </select>
-            <div  class="inquiry2">
-                <input type="button" value="查詢">
+            <div class="inquiry2">
+                <input type="button" value="查詢" id="queryButton">
             </div>
         </div>
         <div class="ordersheet">
-            <table>
+            <table id="orderTable">
                 <tr class="tr_style1">
-                    <td>採購日期</td>
-                    <td>流水號</td>
+                    <td>訂購日期</td>
+                    <td>訂單編號</td>
                     <td>帳號</td>
-                    <td>採購機種/採購數量/單價/採購金額</td>
+                    <td>商品名稱</td>
+                    <td>商品數量</td>
                     <td>總採購金額</td>
                 </tr>
-                <tr>
-                    <td>2024/5/12</td>
-                    <td>Shop20240512001</td>
-                    <td><a href="#">email@email.com</a></td>
-                    <td>商品A/2/200/400</td>
-                    <td>1500</td>
-                </tr>
+                <!-- 查詢結果將在這裡動態產生 -->
             </table>
         </div>
     </div>
-    </div>
     <script src="script/jquery-3.7.1.min.js"></script>
-    <script src="script/all.js"></script>
+    <script src="script/order.js"></script>
 </body>
 </html>

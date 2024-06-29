@@ -24,7 +24,7 @@
             <h2>會員查詢</h2>
         </div>
         <div class="research">
-            <form action="#">
+            <form id="searchForm" action="#">
                 <fieldset>
                     <div class="form_style1">
                         <label for="registeredDate">註冊日期
@@ -33,8 +33,8 @@
                         </label>
                     </div>
                     <div class="form_style1">
-                        <label for="" id="registeredAccount">註冊帳號
-                            <input type="text" name="" id="">
+                        <label for="userRegistered" id="registeredAccount">註冊帳號
+                            <input type="text" name="" id="userRegistered">
                         </label>
                         <label for="serialNumber" id="number">會員編號
                             <input type="text" id="serialNumber" name="serialNumber">
@@ -52,50 +52,33 @@
                             </select>
                         </label>
                     </div>
-                    <div  class="inquiry">
+                    <div  id="inquiry" class="inquiry">
                         <input type="button" value="查詢">
                     </div>
                 </fieldset>
             </form>
         </div>
-        <div class="membersheet">
+        <div class="membersheet" style="display: none;">
             <table>
-                <tr class="tr_style1">
-                    <td>刪除</td>
-                    <td>紀錄日期</td>
-                    <td>流水號</td>
-                    <td>帳號</td>
-                    <td>國家</td>
-                    <td>城市</td>
-                    <td>姓名</td>
-                    <td>性別</td>
-                    <td>修改</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" class="checkbox"></td>
-                    <td>2024/5/12</td>
-                    <td>Mem20240512001</td>
-                    <td>email@email.com</td>
-                    <td>Taiwan</td>
-                    <td>Taipei</td>
-                    <td>Name1</td>
-                    <td>男</td>
-                    <td><a href="modify.html"><input type="button" value="修改" class="fix"></a></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" class="checkbox"></td>
-                    <td>2024/5/12</td>
-                    <td>Mem20240512001</td>
-                    <td>email@email.com</td>
-                    <td>Taiwan</td>
-                    <td>Taipei</td>
-                    <td>Name2</td>
-                    <td>男</td>
-                    <td><a href="modify.html"><input type="button" value="修改" class="fix"></a></td>
-                </tr>
+                <thead>
+                    <tr class="tr_style1">
+                        <td>刪除</td>
+                        <td>紀錄日期</td>
+                        <td>會員編號</td>
+                        <td>帳號</td>
+                        <td>國家</td>
+                        <td>城市</td>
+                        <td>姓名</td>
+                        <td>性別</td>
+                        <td>修改</td>
+                    </tr>
+                </thead>
+                <tbody id="memberTableBody">
+                    <!-- 會員資料將在這裡生成 -->
+                </tbody>
             </table>
-            <div class="delete">
-                <input type="button" value="刪除">
+            <div id="delete" class="delete">
+                <input type="button" value="刪除" id="delUser">
             </div>
         </div>
     </div>

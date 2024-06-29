@@ -48,6 +48,7 @@ function resetForm() {
     // 清空或重置其他表單元素的值
     document.getElementById("userName").value = "";
     document.getElementById("userAccount").value = "";
+    userCity.innerHTML = `<option value="請選擇">請選擇</option>`;
     document.getElementById("userRemark").value = "";
 
     // 清空或重置其他特定的操作，比如清空列表或陣列
@@ -55,6 +56,7 @@ function resetForm() {
     skillData = []; // 重置專長資料陣列
 }
 
+//取得user專長值
 function getUserSkill() {
     let userSkillInput = document.querySelector("#userSkill");
     let getskillValue = userSkillInput.value.trim();
@@ -69,6 +71,7 @@ function getUserSkill() {
     userSkillInput.value = "";
 }
 
+//刪除user專長值
 function deleteUserSkill() {
     let userSkillInput = document.querySelector("#userSkill");
     let delskillValue = userSkillInput.value.trim();
@@ -88,6 +91,7 @@ function deleteUserSkill() {
     userSkillInput.value = "";
 }
 
+//user專長新增渲染
 function renderSkillList() {
     let str = "";
     skillData.forEach(function (skill) {
@@ -96,6 +100,7 @@ function renderSkillList() {
     list.innerHTML = str;
 }
 
+//取得user興趣
 function getCheckboxValue() {
     let checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
     let values = [];

@@ -25,20 +25,18 @@ function storageData() {
 
 // 驗證表單格式
 function validateForm() {
-    const name = modifyName.value.trim();
-    const selectCountry = modifyCountry.value;
+    let name = modifyName.value.trim();
+    let selectCountry = modifyCountry.value;
   
     if (name === "") {
         alert("請輸入姓名");
         console.log("請輸入姓名");
         return false;
-    }
-    else if (selectCountry === "請選擇") {
+    } else if (selectCountry === "請選擇") {
         alert("請選擇國家");
         console.log("請選擇國家");
         return false;
-    }
-    else if (skillData.length === 0) {
+    } else if (skillData.length === 0) {
         alert("請輸入專長");
         console.log("請輸入專長");
         return false;
@@ -52,7 +50,7 @@ function resetForm() {
   
     // 重置下拉選單到初始狀態
     modifyCountry.selectedIndex = 0;
-    modifyCity.selectedIndex = 0;
+    modifyCity.innerHTML = `<option value="請選擇">請選擇</option>`;
   
     // 清空或重置其他表單元素的值
     modifyName.value = "";
@@ -65,6 +63,7 @@ function resetForm() {
     userAccount.disabled = false;
 }
 
+//取得user專長
 function getUserSkill() {
     let userSkillInput = document.querySelector("#modifySkill");
     let getskillValue = userSkillInput.value.trim();
@@ -141,8 +140,7 @@ loadUserData.addEventListener("click", function() {
         modifyRemark.value = user.Remark;
         modifyDate.value = user.RegisterDate; // 顯示註冊日期
         modifySerialNumber.value = user.SerialNumber; // 顯示流水號
-    }
-    else {
+    } else {
         alert("查無此帳號資料");
     }
 
@@ -183,8 +181,7 @@ updateBtn.addEventListener("click", function(e) {
         let userIndex = userData.findIndex(u => u.Account === user.Account);
         if (userIndex !== -1) {
             userData[userIndex] = user;
-        } 
-        else {
+        } else {
             userData.push(user);
         }
         storageData();
