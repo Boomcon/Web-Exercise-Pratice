@@ -1,4 +1,4 @@
-/*四、購物車頁面*/
+/* 四、購物車頁面 */
 const memberSelect = document.querySelector("#memberSelect");
 const quantityInputs = document.querySelectorAll(".tr_style2 input[type='number']");
 const totalPriceCells = document.querySelectorAll(".tr_style2 td:last-child");
@@ -36,6 +36,12 @@ quantityInputs.forEach(input => {
     input.addEventListener("input", calculateTotal);
 });
 
+// 產生訂單編號
+function generateOrderNumber() {
+    const now = new Date();
+    return `Shop${now.getFullYear()}${(now.getMonth() + 1).toString().padStart(2, '0')}${now.getDate().toString().padStart(2, '0')}${now.getHours().toString().padStart(2, '0')}${now.getMinutes().toString().padStart(2, '0')}${now.getSeconds().toString().padStart(2, '0')}`;
+}
+
 // 將購物車資料儲存到localStorage
 submitButton.addEventListener("click", function() {
     const selectedAccount = memberSelect.value;
@@ -52,7 +58,7 @@ submitButton.addEventListener("click", function() {
         const totalPrice = parseInt(totalPriceCells[index].textContent, 10);
 
         if (quantity > 0) {
-            cartData.push({ productName, price, quantity, totalPrice, currentDate, ticketNumber });
+            cartData.push({ productName, price, quantity, totalPrice });
         }
     });
 
@@ -61,9 +67,22 @@ submitButton.addEventListener("click", function() {
         return;
     }
 
-    let cartStorage = JSON.parse(localStorage.getItem("cartData")) || {};
-    cartStorage[selectedAccount] = cartData;
-    localStorage.setItem("cartData", JSON.stringify(cartStorage));
+    // 產生訂單編號和購物日期
+    const orderNumber = generateOrderNumber();
+    const orderDate = new Date().toLocaleDateString();
+
+    // 儲存訂單資料到localStorage
+    const orderData = {
+        account: selectedAccount,
+        date: orderDate,
+        orderNumber: orderNumber,
+        items: cartData,
+        totalAmount: parseInt(totalAmountCell.textContent.replace('總金額：', ''), 10)
+    };
+
+    let orderStorage = JSON.parse(localStorage.getItem("orders")) || [];
+    orderStorage.push(orderData);
+    localStorage.setItem("orders", JSON.stringify(orderStorage));
 
     alert("購物車資料已儲存");
     location.reload(); // 重新載入頁面

@@ -25,10 +25,15 @@ function storageData() {
 
 // 驗證表單格式
 function validateForm() {
+    let account = userAccount.value.trim();
     let name = modifyName.value.trim();
     let selectCountry = modifyCountry.value;
   
-    if (name === "") {
+    if (account === "") {
+        alert("請輸入帳號");
+        console.log("請輸入帳號");
+        return false;
+    } else if (name === "") {
         alert("請輸入姓名");
         console.log("請輸入姓名");
         return false;
